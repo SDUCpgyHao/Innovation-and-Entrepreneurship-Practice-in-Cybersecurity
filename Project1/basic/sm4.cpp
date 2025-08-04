@@ -1,7 +1,7 @@
-#include "SM4.h"
+#include "sm4.h"
 #include <cstring>
-
 using namespace std;
+
 
 #define ROL(x, n) (((x) << (n)) | ((x) >> (32 - (n))))
 

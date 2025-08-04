@@ -1,6 +1,8 @@
 #include <iostream>
 #include <iomanip>
-#include "SM4.h"
+#include "sm4.h"
+#include <chrono>
+
 
 void print_hex(const u8* data, size_t len) {
     for (size_t i = 0; i < len; ++i) {
