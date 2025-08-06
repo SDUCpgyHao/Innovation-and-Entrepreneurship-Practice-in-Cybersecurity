@@ -8,12 +8,16 @@
 - 可视化展示水印嵌入与提取效果
 
 ## 🗂️项目结构
-├── results # 彩色版输出结果
-├── Project2.py # 灰度图像水印嵌入与提取  
-├── Project2_colorful.py # 彩色图像水印嵌入与提取  
-├── my_photo.jpg # 原始图像  
-├── SDU_logo.jpg # 水印图像  
-└── README.md
+project2/<br>
+├── docs/<br>
+│   ├── results/    # 存放结果图片<br>
+│   │   └── figures.png<br>
+│   ├── Project2.py # 灰度图像水印嵌入与提取<br> 
+│   ├── Project2_colorful.py # 彩色图像水印嵌入与提取<br>
+│   ├── my_photo.jpg # 原始图像<br>
+│   ├── SDU_logo.jpg # 水印图像<br>
+│   └── README.md<br>
+
 
 ## 🛠️安装依赖
 请确保使用 Python 3.x，并安装以下依赖：  
@@ -93,11 +97,11 @@ plt.imshow(cv2.cvtColor(image,cv2.COLOR_BGR2RGB)) # 彩色图显示
 用 Matplotlib 可视化每一步结果，辅助调试和分析。
 
 ## ⚙️ 参数解释
-|参数|说明|
-|alpha|水印嵌入强度，数值越大嵌入越明显但鲁棒性越强|
-|block size|每个 8x8 的图像块进行 DCT 处理|
-|dct[4,3]|嵌入/提取 DCT 系数的位置，可调整（如[3,2]、[5,4]等）|
-|SSIM|衡量原始与提取水印的结构相似性|
+| 参数 | 说明 |
+| alpha | 水印嵌入强度，数值越大嵌入越明显但鲁棒性越强 |
+| block size | 每个 8x8 的图像块进行 DCT 处理 |
+| dct[4,3] | 嵌入/提取 DCT 系数的位置，可调整（如[3,2]、[5,4]等）|
+| SSIM | 衡量原始与提取水印的结构相似性 |
 
 ## 🚀使用说明
 ### 灰度图像版本
@@ -123,14 +127,14 @@ python3 dct_watermark_color.py
 
 ## 🧪支持的攻击类型
 以下攻击可用于验证水印鲁棒性：  
-｜**攻击类型**｜**描述**｜
-｜flip｜水平翻转｜
-｜crop｜中心裁剪并缩放还原｜
-｜contrast｜对比度增强｜
-｜shift｜平移变换｜
-｜noise｜添加高斯噪声｜
-｜blur｜高斯模糊｜
-｜jpeg｜JPEG压缩（质量为50）｜
+｜ **攻击类型** ｜ **描述** ｜
+｜ flip ｜ 水平翻转 ｜
+｜ crop ｜ 中心裁剪并缩放还原 ｜
+｜ contrast ｜ 对比度增强 ｜
+｜ shift ｜ 平移变换 ｜
+｜ noise ｜ 添加高斯噪声 ｜
+｜ blur ｜高斯模糊 ｜
+｜ jpeg ｜ JPEG压缩（质量为50）｜
 每种攻击后会提取水印并计算 SSIM 指标（结构相似度指数）以衡量失真程度。
 
 ## 📊输出示例（彩色）
