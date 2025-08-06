@@ -133,9 +133,10 @@ python3 dct_watermark_color.py
 |crop|中心裁剪并缩放还原|
 |contrast|对比度增强|
 |shift|平移变换|
-|noise｜添加高斯噪声|
+|noise|添加高斯噪声|
 |blur|高斯模糊|
 |jpeg|JPEG压缩（质量为50|
+
 每种攻击后会提取水印并计算 SSIM 指标（结构相似度指数）以衡量失真程度。
 
 ## 📊输出示例（彩色）
