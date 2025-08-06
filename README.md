@@ -12,7 +12,7 @@
 (256,2,5)
 2. 电路的公开输入用poseidon2哈希值，隐私输入为哈希原象，哈希算法的输入只考虑一个block即可。
 3. 用Groth16算法生成证明  
-参考文档:
+参考文档:  
 [poseidon2哈希算法](https://eprint.iacr.org/2023/323.pdf)<br>
 [circom说明文档](https://docs.circom.io/)<br>
 [circom电路样例](https://github.com/iden3/circomlib)
