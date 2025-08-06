@@ -10,7 +10,7 @@
 ## 🗂️项目结构
 project2/<br>
 ├── results/    # 存放结果图片<br>
-│   └── figures.png<br>
+├──    └── figures.png<br>
 ├── Project2.py # 灰度图像水印嵌入与提取<br> 
 ├── Project2_colorful.py # 彩色图像水印嵌入与提取<br>
 ├── my_photo.jpg # 原始图像<br>
