@@ -106,10 +106,15 @@ def show_images(images, titles):
 # 主程序 
 def main():
     # 原图像（可替换为其他图像）
-    original = np.random.randint(0, 255, (512, 512), dtype=np.uint8)
+    original_color = cv2.imread("my_photo.jpg")  # 读取彩色图像
+    original = cv2.cvtColor(original_color, cv2.COLOR_BGR2GRAY)  # 转为灰度
+
+    #调整尺寸为 512x512（匹配嵌入逻辑）
+    original = cv2.resize(original, (512, 512))
+    
 
     # 加载校徽水印图像
-    watermark = cv2.imread("SDU_logo.png", 0)
+    watermark = cv2.imread("SDU_logo.jpg", 0)
     watermark = cv2.resize(watermark, (64, 64))
     _, watermark_bin = cv2.threshold(watermark, 128, 255, cv2.THRESH_BINARY)
 
