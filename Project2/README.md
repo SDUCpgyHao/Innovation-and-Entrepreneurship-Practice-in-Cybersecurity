@@ -9,14 +9,13 @@
 
 ## 🗂️项目结构
 project2/<br>
-├── docs/<br>
-│   ├── results/    # 存放结果图片<br>
-│   │   └── figures.png<br>
-│   ├── Project2.py # 灰度图像水印嵌入与提取<br> 
-│   ├── Project2_colorful.py # 彩色图像水印嵌入与提取<br>
-│   ├── my_photo.jpg # 原始图像<br>
-│   ├── SDU_logo.jpg # 水印图像<br>
-│   └── README.md<br>
+├── results/    # 存放结果图片<br>
+│   └── figures.png<br>
+├── Project2.py # 灰度图像水印嵌入与提取<br> 
+├── Project2_colorful.py # 彩色图像水印嵌入与提取<br>
+├── my_photo.jpg # 原始图像<br>
+├── SDU_logo.jpg # 水印图像<br>
+└── README.md<br>
 
 
 ## 🛠️安装依赖
