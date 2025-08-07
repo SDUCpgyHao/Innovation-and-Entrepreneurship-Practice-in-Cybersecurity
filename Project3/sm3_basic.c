@@ -3,7 +3,7 @@
 #include <stdio.h>
 
 // Constants and operations omitted for brevity
-// Basic version of SM3 
+// Basic version of SM3 - reference code
 
 #define ROTL(x, n) (((x) << (n)) | ((x) >> (32 - (n))))
 #define FF0(x, y, z) ((x) ^ (y) ^ (z))
@@ -52,7 +52,7 @@ void sm3_basic(const uint8_t *message, size_t message_len, uint8_t hash[32]) {
 
         for (int j = 0; j < 64; j++) {
             uint32_t Tj = (j < 16) ? 0x79cc4519 : 0x7a879d8a;
-            //Tj = ROTL(Tj, j % 32);
+            Tj = ROTL(Tj, j % 32);
             uint32_t SS1 = ROTL((ROTL(A, 12) + E + Tj), 7);
             uint32_t SS2 = SS1 ^ ROTL(A, 12);
             uint32_t TT1 = FF0(A, B, C) + D + SS2 + W1[j];
