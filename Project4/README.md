@@ -95,8 +95,7 @@ __m128i P1_result = _mm_xor_si128(X, _mm_xor_si128(rol15, rol23));
 ├── sm3_basic.c / sm3_basic.h          # 基础 SM3 实现
 ├── sm3_optimized.c / sm3_optimized.h  # 三种优化方式实现（宏、展开、SIMD）
 ├── benchmark.c                        # 性能测试主程序
-├── README.md                          # 英文说明文档
-└── README_zh.md                       # 中文说明文档（本文件）
+├── README.md                          # 说明文档
 ```
 
 ---
