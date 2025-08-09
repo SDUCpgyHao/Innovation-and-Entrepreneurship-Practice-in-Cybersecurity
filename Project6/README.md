@@ -235,4 +235,4 @@ $$
 pip install phe
 ```
 ## 运行结果
-！[](result.png)
+![](result.png)
