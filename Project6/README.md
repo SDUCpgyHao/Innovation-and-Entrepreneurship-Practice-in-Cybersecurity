@@ -1,4 +1,4 @@
-# P-256 RFC9380 Hash-to-Curve + Paillier 同态加密实现的 DDH-based Private Intersection-Sum 协议
+# Google Password Checkup验证 P-256 RFC9380 Hash-to-Curve + Paillier 同态加密实现的 DDH-based Private Intersection-Sum 协议
 
 **作者**：李云昊  
 **邮箱**：1779551322@qq.com  
