@@ -7,8 +7,8 @@
 测试环境配置：
 - CPU：AMD Ryzen 7 5800H（8核16线程，支持AES-NI、AVX2指令集）
 - 编译器：Clang 14.0.0（启用`-O3 -march=native -maes -mavx2 -mpclmul`）
-- 开发环境：VS Code 1.81.0
-- 操作系统：Windows 10 专业版
+- 开发环境：VS Code 
+- 操作系统：Windows 11
 
 ## 算法数学原理
 
@@ -17,6 +17,7 @@
 SM4算法采用Feistel结构，共32轮迭代，每轮使用不同的轮密钥。算法数学定义如下：
 
 1. **密钥扩展算法**  
+```Latex
    设初始密钥为$K = (K_0, K_1, K_2, K_3)$，其中每个$K_i$为32位字。轮密钥$r_k$生成公式：
    $$
    \begin{align*}
@@ -32,7 +33,7 @@ SM4算法采用Feistel结构，共32轮迭代，每轮使用不同的轮密钥�
    \text{T}(a) = \text{L}(\tau(a)) = \tau(a) \oplus \text{rol}(\tau(a),2) \oplus \text{rol}(\tau(a),10) \oplus \text{rol}(\tau(a),18) \oplus \text{rol}(\tau(a),24)
    $$
    $\tau$为字节替换（S盒），$\text{rol}(x,n)$为32位循环左移$n$位。
-
+```
 3. **解密算法**  
    与加密流程相同，但轮密钥使用顺序相反。
 
