@@ -17,23 +17,23 @@
 SM4算法采用Feistel结构，共32轮迭代，每轮使用不同的轮密钥。算法数学定义如下：
 
 1. **密钥扩展算法**  
-```Latex
-   设初始密钥为$K = (K_0, K_1, K_2, K_3)$，其中每个$K_i$为32位字。轮密钥$r_k$生成公式：
+
+   设初始密钥为K = (K_0, K_1, K_2, K_3)，其中每个K_i为32位字。轮密钥r_k生成公式：
    $$
    \begin{align*}
    K_{i+4} &= K_i \oplus \text{L}'(\tau(K_{i+1} \oplus K_{i+2} \oplus K_{i+3} \oplus \text{CK}_i)) \\
    rk_i &= K_{i+4}
    \end{align*}
    $$
-   其中$\text{CK}_i$为固定常量，$\tau$为S盒替换，$\text{L}'$为线性变换：$\text{L}'(b) = b \oplus \text{rol}(b,13) \oplus \text{rol}(b,23)$
+   其中\text{CK}_i为固定常量，\tau为S盒替换，\text{L}'为线性变换：\text{L}'(b) = b \oplus \text{rol}(b,13) \oplus \text{rol}(b,23)
 
 2. **轮函数**  
-   设第$r$轮输入为$(X_0, X_1, X_2, X_3)$，输出为$(X_1, X_2, X_3, X_0 \oplus \text{T}(X_1 \oplus X_2 \oplus X_3 \oplus rk_r))$，其中$\text{T}$为非线性变换：
+   设r轮输入为(X_0, X_1, X_2, X_3)，输出为(X_1, X_2, X_3, X_0 \oplus \text{T}(X_1 \oplus X_2 \oplus X_3 \oplus rk_r))，其中\text{T}为非线性变换：
    $$
    \text{T}(a) = \text{L}(\tau(a)) = \tau(a) \oplus \text{rol}(\tau(a),2) \oplus \text{rol}(\tau(a),10) \oplus \text{rol}(\tau(a),18) \oplus \text{rol}(\tau(a),24)
    $$
-   $\tau$为字节替换（S盒），$\text{rol}(x,n)$为32位循环左移$n$位。
-```
+   \tau为字节替换（S盒），\text{rol}(x,n)为32位循环左移n位。
+
 3. **解密算法**  
    与加密流程相同，但轮密钥使用顺序相反。
 
