@@ -1,0 +1,9 @@
+{
+  "name": "project3-poseidon2-t3-bn254",
+  "version": "0.1.0",
+  "description": "PoC: Poseidon2 t=3,d=5 BN254 circom project",
+  "scripts": {
+    "make-input": "node scripts/generate_input.js"
+  },
+  "dependencies": {}
+}
