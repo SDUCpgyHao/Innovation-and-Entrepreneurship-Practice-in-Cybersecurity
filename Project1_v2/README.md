@@ -6,7 +6,7 @@
 
 测试环境配置：
 - CPU：AMD Ryzen 7 5800H（8核16线程，支持AES-NI、AVX2指令集）
-- 编译器：Clang 14.0.0（启用`-O3 -march=native -maes -mavx2 -mpclmul`）
+- 编译器：Clang 20.1.7（启用`-O3 -march=native -maes -mavx2 -mpclmul`）
 - 开发环境：VS Code 
 - 操作系统：Windows 11
 
@@ -17,36 +17,28 @@
 SM4算法采用Feistel结构，共32轮迭代，每轮使用不同的轮密钥。算法数学定义如下：
 
 1. **密钥扩展算法**  
-
-   设初始密钥为K = (K_0, K_1, K_2, K_3)，其中每个K_i为32位字。轮密钥r_k生成公式：
-   $$
-   \begin{align*}
-   K_{i+4} &= K_i \oplus \text{L}'(\tau(K_{i+1} \oplus K_{i+2} \oplus K_{i+3} \oplus \text{CK}_i)) \\
-   rk_i &= K_{i+4}
-   \end{align*}
-   $$
-   其中\text{CK}_i为固定常量，\tau为S盒替换，\text{L}'为线性变换：\text{L}'(b) = b \oplus \text{rol}(b,13) \oplus \text{rol}(b,23)
-
-2. **轮函数**  
-   设r轮输入为(X_0, X_1, X_2, X_3)，输出为(X_1, X_2, X_3, X_0 \oplus \text{T}(X_1 \oplus X_2 \oplus X_3 \oplus rk_r))，其中\text{T}为非线性变换：
-   $$
-   \text{T}(a) = \text{L}(\tau(a)) = \tau(a) \oplus \text{rol}(\tau(a),2) \oplus \text{rol}(\tau(a),10) \oplus \text{rol}(\tau(a),18) \oplus \text{rol}(\tau(a),24)
-   $$
-   \tau为字节替换（S盒），\text{rol}(x,n)为32位循环左移n位。
-
-3. **解密算法**  
-   与加密流程相同，但轮密钥使用顺序相反。
+```txt
+设初始密钥为K = (K₀, K₁, K₂, K₃)，其中每个Kᵢ为32位字。轮密钥rkᵢ生成公式：
+Kᵢ₊₄ = Kᵢ XOR L'(τ(Kᵢ₊₁ XOR Kᵢ₊₂ XOR Kᵢ₊₃ XOR CKᵢ))
+rkᵢ = Kᵢ₊₄
+其中CKᵢ为固定常量，τ为S盒替换，L'为线性变换：L'(b) = b XOR rol(b,13) XOR rol(b,23)
+```
+2. 轮函数
+```txt
+设r轮输入为(X₀, X₁, X₂, X₃)，输出为(X₁, X₂, X₃, X₀ XOR T(X₁ XOR X₂ XOR X₃ XOR rkᵣ))，其中T为非线性变换：
+T(a) = L(τ(a)) = τ(a) XOR rol(τ(a),2) XOR rol(τ(a),10) XOR rol(τ(a),18) XOR rol(τ(a),24)
+τ为字节替换（S盒），rol(x,n)为32位循环左移n位。
+```
+3. 解密算法
+与加密流程相同，但轮密钥使用顺序相反。
 
 ### GCM工作模式
+GCM（Galois/Counter Mode）是一种认证加密模式，同时提供机密性和完整性保障，其数学原理包括:  
 
-GCM（Galois/Counter Mode）是一种认证加密模式，同时提供机密性和完整性保障，其数学原理包括：
-
-1. **计数器加密**：明文分组$P_i$与计数器加密结果$Ctr_i$异或生成密文$C_i = P_i \oplus \text{SM4}(Ctr_i)$
-2. **GHASH函数**：基于伽罗瓦域$GF(2^{128})$的多项式乘法，定义为：
-   $$
-   \text{GHASH}_H(A, C) = (A_1 \cdot H^{m+n} \oplus A_2 \cdot H^{m+n-1} \oplus ... \oplus C_n \cdot H) \oplus (len(A) || len(C))
-   $$
-   其中$H$为哈希子密钥（$H = \text{SM4}(0^{128})$），$A$为附加数据，$C$为密文。
+1. 计数器加密：明文分组Pᵢ与计数器加密结果Ctrᵢ异或生成密文Cᵢ = Pᵢ XOR SM4(Ctrᵢ)
+2. GHASH函数：基于伽罗瓦域GF(2¹²⁸)的多项式乘法，定义为：
+GHASH_H(A, C) = (A₁·H^(m+n) XOR A₂·H^(m+n-1) XOR ... XOR Cₙ·H) XOR (len(A) || len(C))
+其中H为哈希子密钥（H = SM4(0¹²⁸)），A为附加数据，C为密文。
 
 
 ## 实现架构设计
